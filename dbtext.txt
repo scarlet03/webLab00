@@ -1,0 +1,53 @@
+CREATE TABLE student (
+student_id INT(13) PRIMARY KEY,
+name VARCHAR(10),
+year TINYINT DEFAULT 1,
+dept_no INT(6),
+major VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE department (
+dept_no INT(13) AUTO_INCREMENT PRIMARY KEY,
+dept_name VARCHAR(20),
+office VARCHAR(20),
+office_tel VARCHAR(30) NOT NULL,
+unique key(dept_name)
+)
+
+alter table student modify column varchar(40);
+alter table student add gender varchar(6);
+
+alter table department modify dept_name varchar(40);
+alter table department modify office varchar(30);
+
+insert into student values(20070002, 'James Bond', 3, 4, 'Business Administration'), (20060001, 'Queenie', 4, 4, 'Business
+Administration'), (20030001, 'Reonardo', 4, 2, 'Electronic Engineering'), (20040003, 'Julia', 3, 2, 'Electronic
+Engineering'), (20060002, 'Roosevelt', 3, 1, 'Computer Science'), (20100002, 'Fearne', 3, 4, 'Business
+Administration'),  (20110001, 'Chloe', 2, 1, 'Computer Science'), (20080003, 'Amy', 4, 3, 'Law'), (20040002, 'Selina', 4, 5, 'English Literature'), (20070001, 'Ellen', 4, 4, 'Business Administration'), (20100001, 'Kathy', 3, 4, 'Business Administration'), (20110002, 'Lucy', 2, 2, 'Electronic
+Engineering'), (20030002, 'Michelle', 5, 1, 'Computer Science'), (20070003, 'April', 4, 3, 'Law'), (20070005, 'Alicia', 2, 5, 'English Literature'), (20100003, 'Yullia', 3, 1, 'Computer Science'), (20070007, 'Ashlee', 2, 4, 'Business Administration')      
+
+insert into department (dept_name, office, office_tel) values ('Computer Science', 'Engineering building', '02-3290-0123’);
+insert into department (dept_name, office, office_tel ) values ('Electronic Engineering', 'Engineering building', '02-3290-2345’);
+insert into department (dept_name, office, office_tel ) value ('Law', 'Law building', '02-3290-7896’); 
+insert into department (dept_name, office, office_tel ) value ('Business Administration', 'Administration building', '02-3290-1112’);
+insert into department (dept_name, office, office_tel ) value ('English Literature', 'Literature building', '02-3290-4412’);
+
+update department set dept_name='Electronic and Electrical Engineering' where dept_name='Electronic engineering';
+
+insert into department (dept_name, office, office_tel ) values ('Education','Education building','02-3290-2347');
+
+update student set depart_no=6 where name='chloe';
+
+delete from student where name = 'Michelle';
+delete from student where name = 'Fearne';
+
+select * from department where dept_name='Computer Science';
+select student_id, year, major from student; 
+select * from student where year=3; 
+select * from student where year=1 or year=2;
+select * from student s join department dm on s.dept_no=dm.dept_no where s.dept_no=4;
+
+select * from student where student_id like '%2007%';
+select * from student order by student_id asc;
+select * from student group by major having year>3;
+select * from student where dept_no=4 and student_id like '%2007%' limit 2;
